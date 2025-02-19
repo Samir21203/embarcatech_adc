@@ -7,29 +7,29 @@
 #include "hardware/pwm.h"
 
 // Definições do joystick
-#define JOYSTICK_X   26
-#define JOYSTICK_Y   27
+#define JOYSTICK_X 26
+#define JOYSTICK_Y 27
 #define JOYSTICK_BTN 22
-#define BTN_A        5
+#define BTN_A 5
 
 // Definições do display I2C
 #define I2C_PORT i2c1
-#define I2C_SDA  14
-#define I2C_SCL  15
+#define I2C_SDA 14
+#define I2C_SCL 15
 
 // Definições do LED
-#define LED_RED   13
-#define LED_BLUE  12
+#define LED_RED 13
+#define LED_BLUE 12
 #define LED_GREEN 11
-#define LED_STEP  200
+#define LED_STEP 200
 uint16_t led_level_red = 0;
 uint16_t led_level_blue = 0;
 
 // Diretivas para o desenho do quadrado
-#define SIZE      8
-#define GAP       500 // Zona morta do joystick
+#define SIZE 8
+#define GAP 500 // Zona morta do joystick
 #define BASE_STEP 8
-#define MAX_STEP  16
+#define MAX_STEP 16
 uint8_t x = 60;
 uint8_t y = 28;
 
@@ -45,10 +45,10 @@ void gpio_callback(uint gpio, uint32_t events);
 
 // Variáveis globais para controle de estados e debounce
 volatile bool pwm_enabled = true;
-volatile bool draw_border   = false;
+volatile bool draw_border = false;
 volatile bool led_green_state = false;
 uint32_t btn_last_pressed = 0;
-uint32_t sw_last_pressed  = 0;
+uint32_t sw_last_pressed = 0;
 
 int main() {
     stdio_init_all();
@@ -65,9 +65,7 @@ int main() {
 
     // Registra o callback global para interrupções.
     // Após essa chamada, todas as interrupções usarão o mesmo callback.
-    gpio_set_irq_enabled_with_callback(JOYSTICK_BTN,
-                                       GPIO_IRQ_EDGE_FALL | GPIO_IRQ_EDGE_RISE,
-                                       true, &gpio_callback);
+    gpio_set_irq_enabled_with_callback(JOYSTICK_BTN, GPIO_IRQ_EDGE_FALL | GPIO_IRQ_EDGE_RISE, true, &gpio_callback);
     // Habilita a interrupção para o BTN_A (usando o callback já registrado)
     gpio_set_irq_enabled(BTN_A, GPIO_IRQ_EDGE_FALL, true);
 
