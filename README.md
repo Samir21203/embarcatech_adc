@@ -58,7 +58,7 @@ Este projeto demonstra o uso do Raspberry Pi Pico para:
 
 2. **Clonando o Repositório:**
    ```bash
-   git clone https://seu_repositorio_exemplo.git
+   git clone https://github.com/Samir21203/embarcatech_adc.git
    cd embarcatech_adc
    ```
 
